@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0c2d55">
   <meta name="description" content="Portal Peak SEP de Auto Contratação, acesso e condições contratuais.">
+  <meta name="referrer" content="no-referrer">
+  <script>
+    // Retira parâmetros do endereço antes de iniciar a interface.
+    // A consulta de CPF acontece apenas no campo local; nenhum CPF deve compor a URL.
+    if (window.location.search) {
+      window.history.replaceState(window.history.state, '', window.location.pathname + window.location.hash);
+    }
+  </script>
   <title>Auto Contratação | Peak SEP</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <style>
@@ -244,7 +252,7 @@ body.drawer-open .site-shell{filter:blur(3px) brightness(.65)}
             <label for="cpf-input" class="sr-only">Informe o seu CPF</label>
             <div class="cpf-field" id="cpf-field">
               <svg class="icon"><use href="#i-person"/></svg>
-              <input id="cpf-input" name="cpf" type="text" inputmode="numeric" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Informe o seu CPF" maxlength="14" aria-describedby="cpf-error" required>
+              <input id="cpf-input" type="text" inputmode="numeric" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Informe o seu CPF" maxlength="14" aria-describedby="cpf-error" required>
             </div>
             <div class="form-message" id="cpf-error" role="status" aria-live="polite"></div>
             <button class="main-button" type="submit">AVANÇAR <svg class="icon"><use href="#i-arrow"/></svg></button>

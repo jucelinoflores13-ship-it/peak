@@ -1,17 +1,17 @@
-# Peak SEP — Portal de Auto Contratação
+# Peak SEP — Atualização de privacidade na URL
 
-## Abrir / publicar
+## O que mudou
+- O CPF não é colocado na URL nem quando o formulário é enviado.
+- Campo de CPF sem atributo `name`, impedindo sua inclusão automática em parâmetros GET mesmo se o JavaScript falhar.
+- O JavaScript usa `event.preventDefault()` para navegar dentro da página sem enviar o formulário.
+- Qualquer parâmetro de consulta preexistente no endereço (ex.: `?cpf=...`) é retirado pelo `history.replaceState` ao abrir o site.
+- A política `referrer` está em `no-referrer` para evitar propagação do endereço em solicitações para outros sites.
 
-O arquivo `index.html` possui o CSS e o JavaScript embutidos. Basta substituir o `index.html` antigo e conservar a pasta `assets/` com as imagens de logo e favicon. Para uma instalação nova, envie `index.html` e a pasta `assets/` para a raiz do repositório usado na Vercel.
+## Publicação
+Substitua o `index.html` na raiz do projeto no GitHub. Preserve a pasta `assets/` para exibir as logos. Depois faça `git add .`, `git commit -m "CPF fora da URL"` e `git push origin main`.
 
-## Fluxo de apresentação
+## Atenção
+Se o CPF já apareceu em uma URL publicada ou compartilhada, limpar o endereço atual não elimina cópias anteriores no histórico, registros de acesso ou mensagens. Apague URLs antigas do histórico e evite compartilhar links com informações pessoais.
 
-1. Digite 11 números no campo CPF, por exemplo `00522244900`. A interface mostra `005.222.449-00` durante a digitação.
-2. Clique em **AVANÇAR** para ir aos termos.
-3. Marque o checkbox e clique em **ASSINAR DIGITALMENTE** para visualizar a confirmação local.
-4. Clique em **VOLTAR AO INÍCIO** para reiniciar.
-5. Clique nos três traços para abrir/fechar o menu. `Esc` também fecha o menu.
-
-## Limites atuais
-
-Esta implementação é um fluxo visual para apresentação. A entrada de CPF tem **máscara e conferência de 11 dígitos**, mas **não consulta nem autentica o CPF**. A confirmação não emite contrato legal, não gera assinatura eletrônica válida, não envia dados e não grava aceite em banco de dados. Para utilização real, integrar autenticação, dados das operações, serviço de assinatura eletrônica e armazenamento seguro conforme a LGPD. Antes de uso jurídico real, o texto contratual deve ser revisado pela equipe jurídica.
+## Funcionalidade
+A navegação e a tela de confirmação são locais. Não há autenticação de CPF, conexão com banco de dados nem assinatura eletrônica válida.
