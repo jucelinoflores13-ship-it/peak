@@ -7,8 +7,171 @@
   <meta name="description" content="Portal Peak SEP de Auto Contratação, acesso e condições contratuais.">
   <title>Auto Contratação | Peak SEP</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css">
-  <script defer src="script.js"></script>
+  <style>
+:root{
+  --navy:#071e37; --ink:#0a1d39; --muted:#536682; --bright-blue:#0559eb;
+  --blue:#0a63e8; --mint:#05e0b3; --paper:#fff; --edge:#e1e8f2;
+  --focus:#347dff;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;min-width:320px;background:#f7f9fd;color:var(--ink);font-family:Inter,"Segoe UI",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+button,input{font:inherit}
+button{cursor:pointer}
+a{text-decoration:none;color:inherit}
+.icon-library{width:0;height:0;position:absolute;overflow:hidden}
+.icon{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;flex:none;vertical-align:middle}
+.sr-only{position:absolute;clip:rect(0,0,0,0);white-space:nowrap;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);border:0}
+[hidden]{display:none!important}
+:focus-visible{outline:3px solid var(--focus);outline-offset:4px}
+.site-shell{min-height:100vh;transition:filter .25s ease}
+body.drawer-open .site-shell{filter:blur(3px) brightness(.65)}
+.hero{isolation:isolate;min-height:100vh;position:relative;overflow:hidden;background:linear-gradient(113deg,#0759dc 0%,#0752ce 39%,#1358ca 64%,#1e3e94 100%);padding:40px 24px 105px}
+.hero:before{content:"";position:absolute;z-index:-1;width:90vmax;height:90vmax;right:-42vmax;top:-54vmax;border-radius:50%;background:radial-gradient(circle at 35% 80%,#06c9ec72 0%,#128ae565 37%,transparent 69%);pointer-events:none}
+.hero:after{content:"";position:absolute;z-index:-1;inset:0;background:radial-gradient(circle at 8% 82%,#081b9075,transparent 53%),radial-gradient(circle at 48% 46%,#145cf032,transparent 54%);pointer-events:none}
+.gradient-orb{position:absolute;z-index:-1;top:18%;right:-24%;width:84vw;height:84vw;border:1px solid #91eeff16;border-radius:50%;background:radial-gradient(circle at 35% 25%,#29dbe516,transparent 55%);pointer-events:none}
+.background-wave{position:absolute;z-index:-1;bottom:-1px;left:0;width:100%;height:clamp(135px,20vh,245px);pointer-events:none}
+.page-layout{width:100%;max-width:1260px;margin:auto;display:flex;flex-direction:column;align-items:center}
+.icon-button{display:grid;place-items:center;border:0;background:transparent;color:white;transition:background .2s ease,transform .2s ease;border-radius:10px}
+.icon-button:hover{background:#ffffff20}
+.hamburger{position:absolute;left:clamp(20px,2.3vw,44px);top:30px;z-index:2;width:48px;height:48px}
+.hamburger .icon{width:33px;height:33px;stroke-width:2.6}
+.logo-wrap{height:210px;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.page-logo{display:block;width:305px;max-width:64vw;height:auto;max-height:155px;object-fit:contain;filter:drop-shadow(0 8px 12px #00154f1c)}
+.form-card{background:var(--paper);position:relative;width:min(100%,506px);padding:41px 39px 27px;border-radius:22px;box-shadow:0 24px 45px #061e5270,0 2px 3px #00308006;animation:card-in .24s ease}
+.accent-top{position:absolute;height:3px;top:0;left:32%;right:32%;background:linear-gradient(90deg,transparent,#05d6b3,transparent);border-radius:5px;opacity:.75}
+@keyframes card-in{from{opacity:.1;transform:translateY(11px)}to{opacity:1;transform:translateY(0)}}
+.form-card h1{margin:0;text-align:center;font-weight:800;color:#0a1937;letter-spacing:-.45px;line-height:1.28;font-size:29px}
+.card-lead{margin:9px auto 29px;max-width:420px;text-align:center;color:#344668;font-size:18px;font-weight:500;line-height:1.45}
+.cpf-field{height:65px;display:flex;align-items:center;gap:14px;padding:0 20px;background:#f0f3f8;border:1.5px solid transparent;border-radius:12px;transition:.2s ease;box-shadow:inset 0 0 0 0 var(--focus)}
+.cpf-field .icon{color:#879cbd;width:27px;height:27px}
+.cpf-field:focus-within{background:#fff;border-color:#167aff;box-shadow:0 0 0 4px #277dff1b}
+.cpf-field:focus-within .icon{color:#167aff}
+.cpf-field.invalid{border-color:#dc4949;box-shadow:0 0 0 3px #dc49491a}
+.cpf-field input{appearance:none;min-width:0;flex:1;height:100%;border:0;background:transparent;outline:none;color:#0c1e3e;font-size:17px}
+.cpf-field input::placeholder{color:#68768a}
+.form-message{min-height:25px;padding-top:7px;color:#bd2c3c;font-size:12px;line-height:1.4}
+.main-button{display:flex;justify-content:center;align-items:center;gap:10px;width:100%;min-height:63px;padding:13px 17px;background:linear-gradient(95deg,#075ae8,#0751df);border:1px solid #1b64ec;border-radius:11px;color:#fff;font-size:16px;letter-spacing:.1px;font-weight:800;box-shadow:0 4px 8px #1944a118;transition:transform .15s ease,background .15s,box-shadow .15s}
+.main-button .icon{width:19px;height:19px}
+.main-button:hover:not(:disabled){background:linear-gradient(95deg,#0752d6,#0648c8);transform:translateY(-1px);box-shadow:0 9px 19px #1944a128}
+.main-button:active:not(:disabled){transform:translateY(0)}
+.main-button:disabled{background:#dce4ef;color:#94a5bb;border-color:#dce4ef;box-shadow:none;cursor:not-allowed}
+.page-footer{display:flex;flex-wrap:wrap;gap:11px;justify-content:center;align-items:center;margin-top:28px;text-align:center;font-size:12px;font-weight:500;color:#e5f4ff}
+.page-footer a{text-decoration:underline;text-underline-offset:3px}
+.page-footer a:hover{color:#fff}
+.footer-dot{color:#08e8ce}
+.terms-card{width:min(100%,741px);padding:29px 32px 25px}
+.terms-card h1{font-size:24px}
+.terms-subtitle{margin:7px 0 20px;text-align:center;color:#7a8ca2;font-size:13px}
+.terms-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px}
+.back-button{background:transparent;color:#647b9f;border:1px solid #dbe7f2;border-radius:8px;width:32px;height:32px;display:grid;place-items:center}
+.back-button:hover{color:var(--blue);background:#f0f6ff}
+.back-button .icon{width:17px;height:17px}
+.step-pill{padding:6px 11px;background:#e4f9f3;color:#078669;border-radius:100px;font-size:10px;letter-spacing:.6px;font-weight:800}
+.contract-scroll{height:390px;max-height:47vh;overflow:auto;overscroll-behavior:contain;padding:19px 24px;background:#f5f7fb;border:1px solid #e0e7f0;border-radius:12px;color:#506077;font-size:13.5px;line-height:1.58;scrollbar-width:thin;scrollbar-color:#c1d0e2 #f5f7fb}
+.contract-scroll::-webkit-scrollbar{width:7px}
+.contract-scroll::-webkit-scrollbar-track{background:#f5f7fb;border-radius:8px}
+.contract-scroll::-webkit-scrollbar-thumb{background:#c1d0e2;border-radius:8px}
+.clause-section{margin:0 0 18px}
+.clause-section:last-child{margin-bottom:2px}
+.clause-section h2{margin:0 0 7px;font-size:13px;font-weight:800;color:#101f3f;letter-spacing:.1px;line-height:1.4}
+.clause-section p{margin:4px 0;color:#506077}
+.clause-section strong{color:#30415e;font-weight:800}
+.agreement{display:flex;align-items:start;gap:12px;margin:20px 0 20px;color:#172a4a;font-size:13px;line-height:1.5;cursor:pointer}
+.agreement input{accent-color:#0b58df;margin:2px 0 0;width:17px;height:17px;flex:none;cursor:pointer}
+.sign-button{min-height:53px}
+.menu-scrim{position:fixed;inset:0;z-index:19;background:#061a3a25}
+.drawer{position:fixed;inset:0 auto 0 0;z-index:20;width:min(360px,88vw);display:flex;flex-direction:column;background:linear-gradient(153deg,#071d35,#082b4c 61%,#041c34);color:#eef5fb;box-shadow:13px 0 38px #020c2480;transform:translateX(-105%);transition:transform .28s cubic-bezier(.22,.61,.36,1)}
+.drawer.open{transform:translateX(0)}
+.drawer-top{padding:29px 28px 20px;min-height:145px;display:flex;justify-content:space-between;align-items:start;border-bottom:1px solid #2c436020}
+.drawer-logo{width:217px;height:auto;max-height:89px;object-fit:contain}
+.drawer-close{height:37px;width:37px;color:#b8cde7;margin-top:0}
+.drawer-content{padding:25px 28px;overflow:auto;flex:1}
+.drawer-label{color:#7d9bbb;font-size:10px;font-weight:800;letter-spacing:1.2px;margin:0 0 16px}
+.contact-item{display:flex;width:100%;gap:16px;align-items:center;padding:14px 0 22px;min-height:86px;text-align:left;color:inherit}
+.contact-item strong{display:block;font-size:15px;font-weight:750}
+.contact-item small{display:block;color:#a6bdd3;font-size:13px;margin-top:5px;line-height:1.3}
+.contact-item:hover strong{color:#e0fffc}
+.contact-item:hover .contact-chevron{transform:translateX(3px)}
+.contact-button{background:transparent;border:0}
+.contact-icon{display:grid;place-items:center;width:47px;height:47px;flex:none;border-radius:12px;background:#0c3156;color:#2ac5ff}
+.contact-icon.whatsapp{color:#00e3ac}
+.contact-icon.document{color:#5e9eff}
+.contact-icon.help{color:#80e6d3}
+.contact-chevron{width:16px;height:16px;color:#819ebc;margin-left:auto;transition:transform .2s ease}
+.drawer-separator{height:1px;background:#24445e;margin:7px 0 18px}
+.drawer-footer{border-top:1px solid #24445e;display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:22px 28px 29px}
+.drawer-footer small{display:block;font-size:12px;color:#8aaac6;margin-bottom:6px}
+.drawer-footer strong{font-size:13px}
+.modal-backdrop{position:fixed;z-index:40;inset:0;display:grid;place-items:center;background:#061b3aaf;padding:18px;backdrop-filter:blur(3px)}
+.modal-card{width:min(100%,460px);background:white;padding:33px;border-radius:18px;box-shadow:0 20px 65px #0004;text-align:center}
+.modal-icon{display:inline-grid;place-items:center;height:53px;width:53px;border-radius:100%;background:#e8f1ff;color:#0d5ae7}
+.modal-icon .icon{width:29px;height:29px}
+.modal-card h2{color:#132441;margin:19px 0 10px;font-size:22px}
+.modal-card p{font-size:14px;color:#62728d;line-height:1.65;margin:0 0 23px}
+.modal-card .main-button{min-height:49px}
+@media(max-width:700px){
+  .hero{padding:45px 15px 88px}
+  .hamburger{left:13px;top:12px;width:42px;height:42px}
+  .hamburger .icon{width:27px;height:27px}
+  .logo-wrap{height:190px}
+  .page-logo{width:240px;max-height:115px}
+  .form-card{padding:31px 22px 24px;border-radius:18px}
+  .form-card h1{font-size:23px}
+  .card-lead{font-size:16px;margin:9px 0 24px}
+  .cpf-field{height:58px;padding:0 15px}
+  .cpf-field input{font-size:15px}
+  .main-button{min-height:55px;font-size:14px}
+  .terms-card{padding:23px 17px 19px}
+  .terms-card h1{font-size:20px;margin:5px 0}
+  .terms-subtitle{font-size:12px}
+  .contract-scroll{height:45vh;max-height:470px;min-height:265px;font-size:12.5px;padding:15px 17px}
+  .clause-section h2{font-size:12.5px}
+  .agreement{font-size:12px;margin:15px 0;gap:9px}
+  .page-footer{font-size:11px;gap:4px;flex-direction:column}
+  .footer-dot{display:none}
+  .drawer-top{min-height:120px;padding:21px}
+  .drawer-logo{width:198px}
+  .drawer-content{padding:18px 23px}
+  .drawer-footer{padding:18px 23px}
+}
+@media(max-width:410px){.logo-wrap{height:175px}.form-card{padding:27px 18px 23px}.card-lead{font-size:15px}.step-footer{font-size:10px}.contract-scroll{padding:14px 13px;max-height:43vh}.terms-card h1{font-size:18px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+/* Finalização visual do fluxo de aceite */
+.success-card{width:min(100%,566px);padding:36px 43px 29px;overflow:hidden;text-align:center;isolation:isolate}
+.success-decoration{position:absolute;z-index:-1;border-radius:50%;pointer-events:none}
+.success-decoration-one{background:radial-gradient(circle,#0bd0b915,transparent 69%);height:370px;width:370px;top:-156px;left:50%;transform:translateX(-50%)}
+.success-decoration-two{height:125px;width:125px;bottom:-67px;right:-36px;border:1px solid #09cfb023}
+.success-check-wrap{width:158px;height:147px;position:relative;display:grid;place-items:center;margin:0 auto 13px}
+.success-outer,.success-middle,.success-check{position:absolute;display:grid;place-items:center;border-radius:50%}
+.success-outer{width:138px;height:138px;background:#e9faf6;animation:success-pulse 3s ease-in-out infinite}
+.success-middle{width:112px;height:112px;background:#d2f7eb}
+.success-check{width:83px;height:83px;background:linear-gradient(140deg,#06bd94,#078f73);box-shadow:0 11px 30px #08a47c3d}
+.success-check .icon{width:39px;height:39px;stroke:#fff;stroke-width:3.5;stroke-linejoin:round;animation:check-appear .45s both}
+.success-sparkle{position:absolute;color:#20c3a7;width:18px;height:18px}
+.success-sparkle.one{top:18px;right:5px}
+.success-sparkle.two{bottom:17px;left:2px;width:15px;height:15px;color:#2880fa}
+.success-kicker{display:inline-flex;align-items:center;gap:6px;margin:2px 0 13px;color:#09856c;background:#eaf9f4;padding:9px 14px;border-radius:30px;font-size:10px;letter-spacing:1.15px;font-weight:800}
+.success-kicker .icon{width:14px;height:14px;stroke-width:3}
+.success-card h1{font-size:32px;line-height:1.2;letter-spacing:-.8px}
+.success-card h1 span{color:#099b7d}
+.success-text{font-size:14px;line-height:1.7;color:#60718b;max-width:420px;margin:16px auto 24px}
+.success-summary{text-align:left;border:1px solid #e0eaf1;background:#f7fafc;border-radius:14px;padding:17px 18px 15px;margin:0 0 22px}
+.success-summary-top{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:700;color:#1b2e4b}
+.success-summary-top>.icon{color:#1272cf;width:20px;height:20px}
+.success-status{display:inline-flex;margin-left:auto;padding:5px 8px;font-size:10px;color:#078966;background:#e1f9ef;border-radius:18px;font-weight:800}
+.success-summary-bottom{display:flex;align-items:center;gap:8px;color:#70829b;font-size:12px;margin:12px 0 0 30px}
+.success-summary-bottom .icon{width:14px;height:14px}
+.success-button{min-height:55px}
+.success-notice{margin:16px 0 0;color:#8795a9;font-size:10.5px;line-height:1.6}
+@keyframes success-pulse{0%,100%{transform:scale(.96)}50%{transform:scale(1.02)}}
+@keyframes check-appear{0%{opacity:0;transform:scale(.35)}70%{opacity:1;transform:scale(1.08)}100%{transform:scale(1)}}
+@media(max-width:700px){.success-card{padding:30px 21px 23px}.success-card h1{font-size:26px}.success-check-wrap{height:123px}.success-outer{height:118px;width:118px}.success-middle{height:99px;width:99px}.success-check{height:74px;width:74px}.success-summary{padding:14px 12px}.success-summary-top{font-size:11.5px}.success-status{font-size:9px}.success-summary-bottom{font-size:11px}.success-text{font-size:13px}}
+@media(prefers-reduced-motion:reduce){.success-outer,.success-check .icon{animation:none}}
+
+</style>
+  
 </head>
 <body>
   <svg xmlns="http://www.w3.org/2000/svg" class="icon-library" aria-hidden="true" focusable="false">
@@ -121,14 +284,14 @@
             <svg class="icon success-sparkle two"><use href="#i-sparkle"/></svg>
           </div>
           <span class="success-kicker"><svg class="icon"><use href="#i-check"/></svg> ETAPA FINALIZADA</span>
-          <h1 id="success-title" tabindex="-1">Assinatura concluída<br><span>com sucesso!</span></h1>
+          <h1 id="success-title" tabindex="-1">Confirmação concluída<br><span>com sucesso!</span></h1>
           <p class="success-text">Obrigado! Você concluiu a leitura e confirmou a concordância com os termos apresentados.</p>
           <div class="success-summary">
             <div class="success-summary-top"><svg class="icon"><use href="#i-file"/></svg><span>Termos e Condições do Contrato</span><span class="success-status">Concluído</span></div>
             <div class="success-summary-bottom"><svg class="icon"><use href="#i-clock"/></svg><span id="success-time">Confirmação realizada agora</span></div>
           </div>
           <button class="main-button success-button" type="button" id="start-over">VOLTAR AO INÍCIO <svg class="icon"><use href="#i-arrow"/></svg></button>
-          <p class="success-notice">Prévia da confirmação. Para formalizar assinaturas eletrônicas, é necessária a integração do serviço de assinatura.</p>
+          
         </section>
 
         <footer class="page-footer"><span>Peak SEP · Auto Contratação</span><span aria-hidden="true" class="footer-dot">·</span><a href="https://wa.me/5511967133595" target="_blank" rel="noopener noreferrer">Precisa de ajuda? WhatsApp (11) 96713-3595</a></footer>
@@ -136,5 +299,143 @@
     </main>
   </div>
 
+<script>
+// Peak SEP — interações locais da interface.
+// Digitação de CPF é apenas a etapa de entrada do fluxo; não consulta cadastros.
+(() => {
+  'use strict';
+  const $ = (id) => document.getElementById(id);
+  const e = {
+    drawer: $('contact-drawer'), scrim: $('menu-scrim'), menu: $('menu-open'), close: $('drawer-close'),
+    form: $('cpf-form'), cpf: $('cpf-input'), field: $('cpf-field'), error: $('cpf-error'),
+    cpfScreen: $('step-cpf'), termsScreen: $('step-terms'), successScreen: $('step-success'),
+    accept: $('accept-terms'), sign: $('sign-button'), termsScroll: $('terms-scroll'),
+    restart: $('start-over'), successTime: $('success-time'), successTitle: $('success-title')
+  };
+  let lastFocused = null;
+  let termsInReadOnly = false;
+
+  function menuVisible() { return e.drawer.classList.contains('open'); }
+  function toggleMenu(show) {
+    if (show === menuVisible()) return;
+    if (show) lastFocused = document.activeElement;
+    e.drawer.classList.toggle('open', show);
+    e.drawer.setAttribute('aria-hidden', String(!show));
+    e.drawer.inert = !show;
+    e.scrim.hidden = !show;
+    e.menu.setAttribute('aria-expanded', String(show));
+    document.body.classList.toggle('drawer-open', show);
+    if (show) e.close.focus();
+    else if (lastFocused?.isConnected && !lastFocused.closest('[hidden]')) lastFocused.focus();
+  }
+
+  function showScreen(id) {
+    e.cpfScreen.hidden = id !== 'cpf';
+    e.termsScreen.hidden = id !== 'terms';
+    e.successScreen.hidden = id !== 'success';
+    window.scrollTo(0, 0);
+  }
+  function clearError() {
+    e.error.textContent = '';
+    e.field.classList.remove('invalid');
+    e.cpf.setAttribute('aria-invalid', 'false');
+  }
+  function showError(message) {
+    e.error.textContent = message;
+    e.field.classList.add('invalid');
+    e.cpf.setAttribute('aria-invalid', 'true');
+  }
+  function digitsOnly(text) { return String(text).replace(/\D/g, '').slice(0,11); }
+  function cpfMask(value) {
+    const d = digitsOnly(value);
+    let result = d.slice(0,3);
+    if (d.length > 3) result += '.' + d.slice(3,6);
+    if (d.length > 6) result += '.' + d.slice(6,9);
+    if (d.length > 9) result += '-' + d.slice(9,11);
+    return result;
+  }
+  // Contagem de dígitos à esquerda do cursor evita pular posições ao editar no meio.
+  function putCaretAfterDigits(input, count) {
+    let position = 0;
+    let counted = 0;
+    while (position < input.value.length && counted < count) {
+      if (/\d/.test(input.value.charAt(position))) counted++;
+      position++;
+    }
+    // Avança por pontuação da máscara, facilitando a próxima digitação.
+    while (position < input.value.length && !/\d/.test(input.value.charAt(position))) position++;
+    input.setSelectionRange(position, position);
+  }
+  function onCPFInput() {
+    const start = e.cpf.selectionStart ?? e.cpf.value.length;
+    const count = (e.cpf.value.slice(0, start).match(/\d/g) || []).length;
+    const formatted = cpfMask(e.cpf.value);
+    if (formatted !== e.cpf.value) {
+      e.cpf.value = formatted;
+      if (document.activeElement === e.cpf) putCaretAfterDigits(e.cpf, count);
+    }
+    if (e.error.textContent) clearError();
+  }
+  function openCPF() {
+    toggleMenu(false);
+    e.cpf.value = '';
+    e.accept.checked = false;
+    e.accept.disabled = false;
+    e.sign.disabled = true;
+    termsInReadOnly = false;
+    clearError();
+    showScreen('cpf');
+    e.cpf.focus({ preventScroll: true });
+  }
+  function openTerms(readOnly) {
+    toggleMenu(false);
+    termsInReadOnly = !!readOnly;
+    e.accept.checked = false;
+    e.accept.disabled = termsInReadOnly;
+    e.sign.disabled = true;
+    e.termsScroll.scrollTop = 0;
+    showScreen('terms');
+    $('terms-title').setAttribute('tabindex', '-1');
+    $('terms-title').focus({ preventScroll: true });
+  }
+  function finish() {
+    if (termsInReadOnly || e.sign.disabled || !e.accept.checked) return;
+    toggleMenu(false);
+    const now = new Intl.DateTimeFormat('pt-BR', { dateStyle: 'long', timeStyle: 'short' }).format(new Date());
+    e.successTime.textContent = `Confirmação em ${now}`;
+    showScreen('success');
+    e.successTitle.focus({ preventScroll: true });
+  }
+
+  e.menu.addEventListener('click', () => toggleMenu(true));
+  e.close.addEventListener('click', () => toggleMenu(false));
+  e.scrim.addEventListener('click', () => toggleMenu(false));
+  $('view-terms').addEventListener('click', () => openTerms(true));
+  $('back-home').addEventListener('click', openCPF);
+  $('step-back').addEventListener('click', openCPF);
+  e.cpf.addEventListener('input', onCPFInput);
+  e.form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const digits = digitsOnly(e.cpf.value);
+    if (digits.length !== 11) {
+      showError('Digite os 11 números do CPF para continuar.');
+      e.cpf.focus();
+      return;
+    }
+    // Não armazena nem transmite o CPF. Não verifica identidade ou situação cadastral.
+    e.cpf.value = '';
+    clearError();
+    openTerms(false);
+  });
+  e.accept.addEventListener('change', () => {
+    e.sign.disabled = !e.accept.checked || termsInReadOnly;
+  });
+  e.sign.addEventListener('click', finish);
+  e.restart.addEventListener('click', openCPF);
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && menuVisible()) toggleMenu(false);
+  });
+})();
+</script>
 </body>
 </html>
