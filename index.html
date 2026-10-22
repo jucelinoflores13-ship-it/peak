@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0c2d55">
-  <meta name="description" content="Protótipo demonstrativo da interface de auto contratação Peak SEP: consulta por CPF e visualização dos termos contratuais.">
-  <title>Auto Contratação | Peak SEP — Demonstração</title>
+  <meta name="description" content="Portal Peak SEP de Auto Contratação, acesso e condições contratuais.">
+  <title>Auto Contratação | Peak SEP</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
   <script defer src="script.js"></script>
@@ -25,6 +25,8 @@
     <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7h.01"/></symbol>
     <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M19 14v5H5V5h5"/></symbol>
     <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.65 2.65 0 0 1 5.2.6c0 2-2.7 2.3-2.7 4.4M12 17.5h.01"/></symbol>
+    <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="m12 2 2.5 7.5L22 12l-7.5 2.5L12 22l-2.5-7.5L2 12l7.5-2.5z"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
   </svg>
 
   <div class="menu-scrim" id="menu-scrim" hidden></div>
@@ -53,9 +55,8 @@
         <span><strong>Página inicial</strong><small>Voltar à consulta de CPF</small></span>
         <svg class="icon contact-chevron"><use href="#i-chevron"/></svg>
       </button>
-      <p class="drawer-privacy"><svg class="icon"><use href="#i-shield"/></svg> Neste protótipo, os números de CPF digitados não são enviados nem armazenados.</p>
     </div>
-    <footer class="drawer-footer"><div><small>Módulo</small><strong>Auto Contratação</strong></div><div><small>Versão</small><strong>3.3 · Demo</strong></div></footer>
+    <footer class="drawer-footer"><div><small>Módulo</small><strong>Auto Contratação</strong></div><div><small>Versão</small><strong>3.3</strong></div></footer>
   </aside>
 
   <div class="site-shell" id="site-shell">
@@ -85,7 +86,6 @@
             <div class="form-message" id="cpf-error" role="status" aria-live="polite"></div>
             <button class="main-button" type="submit">AVANÇAR <svg class="icon"><use href="#i-arrow"/></svg></button>
           </form>
-          <div class="step-footer"><svg class="icon"><use href="#i-shield"/></svg><span>Consulta demonstrativa. Nenhum CPF é consultado ou enviado a servidores.</span></div>
         </section>
 
         <section class="form-card terms-card screen" id="step-terms" aria-labelledby="terms-title" hidden>
@@ -107,21 +107,34 @@
           </div>
           <label class="agreement"><input type="checkbox" id="accept-terms"><span>Li e concordo com todos os termos e condições descritos acima.</span></label>
           <button class="main-button sign-button" type="button" id="sign-button" disabled>ASSINAR DIGITALMENTE <svg class="icon"><use href="#i-arrow"/></svg></button>
-          <p class="sign-footnote">Modo de demonstração: este botão não produz assinatura nem formaliza contrato.</p>
         </section>
 
-        <footer class="page-footer"><span>Peak SEP · Protótipo de interface</span><span aria-hidden="true" class="footer-dot">·</span><a href="https://wa.me/5511967133595" target="_blank" rel="noopener noreferrer">Precisa de ajuda? WhatsApp (11) 96713-3595</a></footer>
+
+        <section class="form-card success-card screen" id="step-success" aria-labelledby="success-title" hidden>
+          <div class="success-decoration success-decoration-one" aria-hidden="true"></div>
+          <div class="success-decoration success-decoration-two" aria-hidden="true"></div>
+          <div class="success-check-wrap" aria-hidden="true">
+            <span class="success-outer"></span>
+            <span class="success-middle"></span>
+            <span class="success-check"><svg class="icon"><use href="#i-check"/></svg></span>
+            <svg class="icon success-sparkle one"><use href="#i-sparkle"/></svg>
+            <svg class="icon success-sparkle two"><use href="#i-sparkle"/></svg>
+          </div>
+          <span class="success-kicker"><svg class="icon"><use href="#i-check"/></svg> ETAPA FINALIZADA</span>
+          <h1 id="success-title" tabindex="-1">Assinatura concluída<br><span>com sucesso!</span></h1>
+          <p class="success-text">Obrigado! Você concluiu a leitura e confirmou a concordância com os termos apresentados.</p>
+          <div class="success-summary">
+            <div class="success-summary-top"><svg class="icon"><use href="#i-file"/></svg><span>Termos e Condições do Contrato</span><span class="success-status">Concluído</span></div>
+            <div class="success-summary-bottom"><svg class="icon"><use href="#i-clock"/></svg><span id="success-time">Confirmação realizada agora</span></div>
+          </div>
+          <button class="main-button success-button" type="button" id="start-over">VOLTAR AO INÍCIO <svg class="icon"><use href="#i-arrow"/></svg></button>
+          <p class="success-notice">Prévia da confirmação. Para formalizar assinaturas eletrônicas, é necessária a integração do serviço de assinatura.</p>
+        </section>
+
+        <footer class="page-footer"><span>Peak SEP · Auto Contratação</span><span aria-hidden="true" class="footer-dot">·</span><a href="https://wa.me/5511967133595" target="_blank" rel="noopener noreferrer">Precisa de ajuda? WhatsApp (11) 96713-3595</a></footer>
       </div>
     </main>
   </div>
 
-  <div id="terms-modal" class="modal-backdrop" hidden>
-    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-copy">
-      <span class="modal-icon"><svg class="icon"><use href="#i-info"/></svg></span>
-      <h2 id="modal-title">Assinatura não configurada</h2>
-      <p id="modal-copy">Este site é um protótipo visual. Nenhum CPF foi transmitido e nenhum contrato foi assinado. Para uso real, é necessário integrar autenticação, documentação e um serviço de assinatura eletrônica adequado.</p>
-      <button id="modal-close" class="main-button" type="button">ENTENDI</button>
-    </div>
-  </div>
 </body>
 </html>

@@ -46,8 +46,6 @@ body.drawer-open .site-shell{filter:blur(3px) brightness(.65)}
 .main-button:hover:not(:disabled){background:linear-gradient(95deg,#0752d6,#0648c8);transform:translateY(-1px);box-shadow:0 9px 19px #1944a128}
 .main-button:active:not(:disabled){transform:translateY(0)}
 .main-button:disabled{background:#dce4ef;color:#94a5bb;border-color:#dce4ef;box-shadow:none;cursor:not-allowed}
-.step-footer{display:flex;align-items:center;gap:9px;justify-content:center;margin-top:20px;font-size:11px;line-height:1.55;color:#8190a6;text-align:left}
-.step-footer .icon{color:#04a78f;width:18px;height:18px}
 .page-footer{display:flex;flex-wrap:wrap;gap:11px;justify-content:center;align-items:center;margin-top:28px;text-align:center;font-size:12px;font-weight:500;color:#e5f4ff}
 .page-footer a{text-decoration:underline;text-underline-offset:3px}
 .page-footer a:hover{color:#fff}
@@ -72,7 +70,6 @@ body.drawer-open .site-shell{filter:blur(3px) brightness(.65)}
 .agreement{display:flex;align-items:start;gap:12px;margin:20px 0 20px;color:#172a4a;font-size:13px;line-height:1.5;cursor:pointer}
 .agreement input{accent-color:#0b58df;margin:2px 0 0;width:17px;height:17px;flex:none;cursor:pointer}
 .sign-button{min-height:53px}
-.sign-footnote{font-size:10.5px;color:#8996aa;margin:15px 0 0;text-align:center;line-height:1.4}
 .menu-scrim{position:fixed;inset:0;z-index:19;background:#061a3a25}
 .drawer{position:fixed;inset:0 auto 0 0;z-index:20;width:min(360px,88vw);display:flex;flex-direction:column;background:linear-gradient(153deg,#071d35,#082b4c 61%,#041c34);color:#eef5fb;box-shadow:13px 0 38px #020c2480;transform:translateX(-105%);transition:transform .28s cubic-bezier(.22,.61,.36,1)}
 .drawer.open{transform:translateX(0)}
@@ -93,8 +90,6 @@ body.drawer-open .site-shell{filter:blur(3px) brightness(.65)}
 .contact-icon.help{color:#80e6d3}
 .contact-chevron{width:16px;height:16px;color:#819ebc;margin-left:auto;transition:transform .2s ease}
 .drawer-separator{height:1px;background:#24445e;margin:7px 0 18px}
-.drawer-privacy{display:flex;align-items:start;gap:10px;margin:17px 0;font-size:11px;line-height:1.6;color:#80a6c6}
-.drawer-privacy .icon{color:#15cda8;width:17px;height:17px;margin-top:2px}
 .drawer-footer{border-top:1px solid #24445e;display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:22px 28px 29px}
 .drawer-footer small{display:block;font-size:12px;color:#8aaac6;margin-bottom:6px}
 .drawer-footer strong{font-size:13px}
@@ -132,3 +127,35 @@ body.drawer-open .site-shell{filter:blur(3px) brightness(.65)}
 }
 @media(max-width:410px){.logo-wrap{height:175px}.form-card{padding:27px 18px 23px}.card-lead{font-size:15px}.step-footer{font-size:10px}.contract-scroll{padding:14px 13px;max-height:43vh}.terms-card h1{font-size:18px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+/* Finalização visual do fluxo de aceite */
+.success-card{width:min(100%,566px);padding:36px 43px 29px;overflow:hidden;text-align:center;isolation:isolate}
+.success-decoration{position:absolute;z-index:-1;border-radius:50%;pointer-events:none}
+.success-decoration-one{background:radial-gradient(circle,#0bd0b915,transparent 69%);height:370px;width:370px;top:-156px;left:50%;transform:translateX(-50%)}
+.success-decoration-two{height:125px;width:125px;bottom:-67px;right:-36px;border:1px solid #09cfb023}
+.success-check-wrap{width:158px;height:147px;position:relative;display:grid;place-items:center;margin:0 auto 13px}
+.success-outer,.success-middle,.success-check{position:absolute;display:grid;place-items:center;border-radius:50%}
+.success-outer{width:138px;height:138px;background:#e9faf6;animation:success-pulse 3s ease-in-out infinite}
+.success-middle{width:112px;height:112px;background:#d2f7eb}
+.success-check{width:83px;height:83px;background:linear-gradient(140deg,#06bd94,#078f73);box-shadow:0 11px 30px #08a47c3d}
+.success-check .icon{width:39px;height:39px;stroke:#fff;stroke-width:3.5;stroke-linejoin:round;animation:check-appear .45s both}
+.success-sparkle{position:absolute;color:#20c3a7;width:18px;height:18px}
+.success-sparkle.one{top:18px;right:5px}
+.success-sparkle.two{bottom:17px;left:2px;width:15px;height:15px;color:#2880fa}
+.success-kicker{display:inline-flex;align-items:center;gap:6px;margin:2px 0 13px;color:#09856c;background:#eaf9f4;padding:9px 14px;border-radius:30px;font-size:10px;letter-spacing:1.15px;font-weight:800}
+.success-kicker .icon{width:14px;height:14px;stroke-width:3}
+.success-card h1{font-size:32px;line-height:1.2;letter-spacing:-.8px}
+.success-card h1 span{color:#099b7d}
+.success-text{font-size:14px;line-height:1.7;color:#60718b;max-width:420px;margin:16px auto 24px}
+.success-summary{text-align:left;border:1px solid #e0eaf1;background:#f7fafc;border-radius:14px;padding:17px 18px 15px;margin:0 0 22px}
+.success-summary-top{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:700;color:#1b2e4b}
+.success-summary-top>.icon{color:#1272cf;width:20px;height:20px}
+.success-status{display:inline-flex;margin-left:auto;padding:5px 8px;font-size:10px;color:#078966;background:#e1f9ef;border-radius:18px;font-weight:800}
+.success-summary-bottom{display:flex;align-items:center;gap:8px;color:#70829b;font-size:12px;margin:12px 0 0 30px}
+.success-summary-bottom .icon{width:14px;height:14px}
+.success-button{min-height:55px}
+.success-notice{margin:16px 0 0;color:#8795a9;font-size:10.5px;line-height:1.6}
+@keyframes success-pulse{0%,100%{transform:scale(.96)}50%{transform:scale(1.02)}}
+@keyframes check-appear{0%{opacity:0;transform:scale(.35)}70%{opacity:1;transform:scale(1.08)}100%{transform:scale(1)}}
+@media(max-width:700px){.success-card{padding:30px 21px 23px}.success-card h1{font-size:26px}.success-check-wrap{height:123px}.success-outer{height:118px;width:118px}.success-middle{height:99px;width:99px}.success-check{height:74px;width:74px}.success-summary{padding:14px 12px}.success-summary-top{font-size:11.5px}.success-status{font-size:9px}.success-summary-bottom{font-size:11px}.success-text{font-size:13px}}
+@media(prefers-reduced-motion:reduce){.success-outer,.success-check .icon{animation:none}}

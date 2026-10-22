@@ -1,34 +1,23 @@
-# Peak SEP — protótipo web de Auto Contratação
+# Peak SEP — apresentação do fluxo de Auto Contratação
 
-Site estático responsivo (HTML + CSS + JavaScript) inspirado nas referências visuais fornecidas. Contém a logomarca fornecida, tela de CPF, painel lateral com WhatsApp e tela de termos com **as 11 seções e as cláusulas enviadas**.
+Página web estática para **apresentação de entrevista**. Replica o design solicitado e apresenta o fluxo CPF → termos → confirmação visual.
 
-## Abrir e testar
+## Usar
 
-1. Extraia o ZIP.
-2. Abra `index.html` em um navegador. O site funciona sem instalação de dependências, contas, API ou servidor.
-3. Digite um CPF com dígitos verificadores válidos para testar o fluxo de navegação; os dígitos não são enviados, guardados no navegador ou mostrados nos termos.
-4. Marque os termos para habilitar o botão "ASSINAR DIGITALMENTE". O botão abre um aviso de demonstração — ele **não assina documentos**.
-5. No canto esquerdo, abra o menu e teste o link do WhatsApp (11) 96713-3595.
+1. Abra `index.html` no navegador ou publique a pasta inteira na Vercel/GitHub Pages.
+2. Informe um CPF matematicamente válido para abrir os termos (a validação ocorre apenas no navegador e o número digitado é descartado em seguida).
+3. Leia as 11 seções, marque a concordância e clique em **ASSINAR DIGITALMENTE** para ver a nova tela estilizada de conclusão.
+4. Clique em **VOLTAR AO INÍCIO** para repetir o fluxo durante a entrevista. O menu oferece um link ao WhatsApp (11) 96713-3595.
 
-## Publicar com Vercel
+## Importante para apresentação/produção
 
-- Suba `index.html`, `styles.css`, `script.js` e a pasta `assets` na **raiz** de um repositório GitHub novo.
-- Importe o repositório pela Vercel, selecione **Framework Preset: Other** e deixe o diretório de saída em branco (site estático).
-- A publicação substituirá o conteúdo anterior somente se você realizar deploy nesse mesmo projeto da Vercel; para não perder a página anterior, crie um projeto novo.
+**Esta versão é uma interface demonstrativa.** A etapa final **simula a aparência da confirmação** e não produz uma assinatura eletrônica ou certificado, não cria registro legal nem armazena CPF/aceite no servidor. O horário exibido é o do dispositivo. O site não consulta banco de dados nem comprova identidade ou quitação de dívida.
 
-## Limitações importantes
+Para colocar em produção são necessários: autorização de uso da marca Peak SEP; validação de identidade; backend seguro; política LGPD; base de dados; fornecedor de assinatura eletrônica com evidências verificáveis; revisão jurídica integral dos termos; remoção da simulação de sucesso até o provedor retornar confirmação real.
 
-- É um **protótipo**, sem banco de dados, consulta de CPF, autenticação ou API.
-- Valida apenas o formato e os dígitos verificadores do CPF localmente. Isto não prova identidade, titularidade ou existência de contrato.
-- Não faz assinatura digital, não gera certificado ou comprovante e não altera a situação de dívidas.
-- Os textos contratuais foram copiados conforme fornecidos e **não passaram por revisão jurídica**. As frases sobre efeitos legais não são uma garantia de validade. Para uso real: obter revisão jurídica, confirmar autorização de uso da marca Peak, definir política de privacidade/LGPD e integrar autenticação e fornecedor apropriado de assinaturas eletrônicas.
-- Somente o WhatsApp informado foi incorporado como contato; telefone/e-mail mostrados em prints antigos de outra marca não foram apresentados como canais oficiais da Peak.
+## Arquivos
 
-## Estrutura
-
-- `index.html` — acessibilidade, conteúdo e 11 seções de cláusulas.
-- `styles.css` — layout responsivo e efeitos visuais.
-- `script.js` — fluxo local de CPF, menu, checkbox e modal informativo.
-- `assets/peak-sep-logo-white.png` — logomarca adaptada da imagem enviada para fundo azul.
-- `assets/peak-sep-logo-color.png` — logomarca em versão para fundo claro.
-- `assets/favicon.svg` — ícone do site.
+- `index.html`: telas, conteúdo dos termos e componentes acessíveis;
+- `styles.css`: design responsivo e animação de conclusão;
+- `script.js`: CPF local, navegação, menu e confirmação visual;
+- `assets/`: logotipo e favicon.

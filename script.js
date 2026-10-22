@@ -1,11 +1,11 @@
 'use strict';
-// Protótipo estático: o CPF nunca é transmitido, salvo, registrado ou incluído na URL.
+// Validação local: o CPF não é transmitido, salvo, registrado ou incluído na URL.
 const $=id=>document.getElementById(id);
 const elements={
   drawer:$('contact-drawer'),scrim:$('menu-scrim'),openMenu:$('menu-open'),closeMenu:$('drawer-close'),
   cpfForm:$('cpf-form'),cpf:$('cpf-input'),cpfField:$('cpf-field'),cpfError:$('cpf-error'),
-  stepCPF:$('step-cpf'),stepTerms:$('step-terms'),accept:$('accept-terms'),
-  sign:$('sign-button'),termsScroll:$('terms-scroll'),modal:$('terms-modal'),closeModal:$('modal-close')
+  stepCPF:$('step-cpf'),stepTerms:$('step-terms'),stepSuccess:$('step-success'),accept:$('accept-terms'),
+  sign:$('sign-button'),termsScroll:$('terms-scroll'),startOver:$('start-over'),successTime:$('success-time')
 };
 let lastFocus=null;
 function setDrawer(isOpen){
@@ -22,6 +22,7 @@ function openTerms(readOnly=false){
   setDrawer(false);
   elements.stepCPF.hidden=true;
   elements.stepTerms.hidden=false;
+  elements.stepSuccess.hidden=true;
   elements.accept.checked=false;
   elements.accept.disabled=readOnly;
   elements.sign.disabled=true;
@@ -34,6 +35,7 @@ function openCPF(){
   setDrawer(false);
   elements.stepCPF.hidden=false;
   elements.stepTerms.hidden=true;
+  elements.stepSuccess.hidden=true;
   elements.cpf.value='';
   elements.cpfError.textContent='';
   elements.cpfField.classList.remove('invalid');
@@ -84,17 +86,20 @@ elements.cpfForm.addEventListener('submit',event=>{
   openTerms(false);
 });
 elements.accept.addEventListener('change',()=>{elements.sign.disabled=!elements.accept.checked||elements.accept.disabled;});
-elements.sign.addEventListener('click',()=>{
-  if(elements.sign.disabled)return;
-  elements.modal.hidden=false;
-  elements.closeModal.focus();
-});
-function closeModal(){elements.modal.hidden=true;elements.sign.focus();}
-elements.closeModal.addEventListener('click',closeModal);
-elements.modal.addEventListener('click',event=>{if(event.target===elements.modal)closeModal();});
+function completePresentationFlow(){
+  if(elements.sign.disabled || !elements.accept.checked || elements.accept.disabled) return;
+  setDrawer(false);
+  elements.stepCPF.hidden=true;
+  elements.stepTerms.hidden=true;
+  elements.stepSuccess.hidden=false;
+  // Apenas horário exibido no dispositivo; não há emissão de recibo ou registro remoto.
+  const formatted=new Intl.DateTimeFormat('pt-BR', {dateStyle:'long',timeStyle:'short'}).format(new Date());
+  elements.successTime.textContent=`Confirmação em ${formatted}`;
+  window.scrollTo({top:0,behavior:'instant'});
+  $('success-title').focus({preventScroll:true});
+}
+elements.sign.addEventListener('click',completePresentationFlow);
+elements.startOver.addEventListener('click',()=>{openCPF();elements.cpf.focus();});
 document.addEventListener('keydown',event=>{
-  if(event.key==='Escape'){
-    if(!elements.modal.hidden)closeModal();
-    else if(elements.drawer.classList.contains('open'))setDrawer(false);
-  }
+  if(event.key==='Escape' && elements.drawer.classList.contains('open')) setDrawer(false);
 });
